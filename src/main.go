@@ -89,7 +89,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		t := time.Now().Add(10 * time.Minute)
 		s.GuildMemberTimeout(m.GuildID, m.Author.ID, &t)
 		s.ChannelMessageSend(m.ChannelID,
-			fmt.Sprintf("<@%s>\nلقد تجاوزت الحد الأقصى من الرسائل خلال الساعة الواحدة, %s", m.Author.ID, insults[rand.Intn(len(insults))]))
+			fmt.Sprintf("<@%s>\nلقد تجاوزت الحد الأقصى من الرسائل خلال 10 دقائق, %s", m.Author.ID, insults[rand.Intn(len(insults))]))
 		list[m.Author.ID] = Record{Count: 1, OldestMessageTime: m.Timestamp}
 	}
 }
