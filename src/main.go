@@ -84,7 +84,6 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			list[m.Author.ID] = Record{Count: list[m.Author.ID].Count + 1, OldestMessageTime: r.OldestMessageTime}
 		}
 	}
-	list[m.Author.ID] = Record{Count: list[m.Author.ID].Count + 1, OldestMessageTime: m.Timestamp}
 	if list[m.Author.ID].Count >= MAX_MESSAGES {
 		t := time.Now().Add(10 * time.Minute)
 		s.GuildMemberTimeout(m.GuildID, m.Author.ID, &t)
